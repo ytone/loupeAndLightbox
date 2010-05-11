@@ -41,8 +41,7 @@ jQuery loupeAndLightbox Plugin
       // Setup //
       ///////////      
       $this.css({
-        cursor:'default',
-        display:'block'
+        cursor:'default'
       });      
       $loupe.css({
         cursor:'none',
