@@ -95,19 +95,13 @@ jQuery loupeAndLightbox Plugin
             offsetLeft = $targetImage.offset().left,
             offsetBottom = $targetImage.offset().top+$targetImage.height(),
             offsetRight = $targetImage.offset().left+$targetImage.width();
-        
-        if(left < offsetLeft) {
-          var left = offsetLeft;
-        } else if(left > offsetRight) {
-          var left = offsetRight;
-        } 
-        if(top < offsetTop) {
-          var top = offsetTop;
-        } else if(top > offsetBottom) {
-          var top = offsetBottom;
-        }
-        
-        magnify(left, top);
+
+        if(left < offsetLeft || left > offsetRight || top < offsetTop || top > offsetBottom) {
+          $loupe.css({cursor:'default'});
+        } else {
+          $loupe.css({cursor:'none'});
+          magnify(left, top);
+        }  
       }).click(function() {
         detachLoupe();
         if(settings.lightbox == true) {  
