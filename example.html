@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>loupeAndLightbox jQuery Plugin</title>
+    <style>
+      body {
+        margin:50px;
+        text-align:center;
+      }
+      
+      * {
+        outline:none;
+      }
+      
+      img {
+        border:none;
+      }
+      
+      a {
+        margin:auto;
+        height:227px;
+        width:302px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <a href="images/big/dogface_big.jpg" class="js_loupeAndLightbox">
+      <img src="images/small/dogface_small.jpg" alt="dogface" />
+    </a>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.loupeAndLightbox.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      $('.js_loupeAndLightbox').loupeAndLightbox({
+        width:100,
+        height:100
+      });
+    });
+    </script>
+  </body>
+</html>
