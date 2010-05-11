@@ -160,7 +160,7 @@ jQuery loupeAndLightbox Plugin
             position:'absolute',
             top:0,
             width:$(document).width(),
-            zIndex:98,
+            zIndex:settings.zIndex-1,
             'opacity':0.75,
             'filter':'alpha(opacity=75)'
           })
