@@ -42,7 +42,13 @@ jQuery loupeAndLightbox Plugin
       ///////////      
       $this.css({
         cursor:'default'
-      });      
+      });  
+      $targetImage.css({
+        cursor:'pointer'
+      });
+      $magnifiedImage.css({
+        position:'absolute'
+      });    
       $loupe.css({
         cursor:'none',
         display:'none',
@@ -53,11 +59,16 @@ jQuery loupeAndLightbox Plugin
         width:settings.width,
         zIndex:settings.zIndex
       });
-      $targetImage.css({
-        cursor:'pointer'
-      });
-      $magnifiedImage.css({
-        position:'absolute'
+      $lightbox.css({
+        background:'#000',
+        height:$(document).height(),     
+        left:0,
+        position:'absolute',
+        top:0,
+        width:$(document).width(),
+        zIndex:settings.zIndex-1,
+        'opacity':0.75,
+        'filter':'alpha(opacity=75)'
       });
         
       ////////////
@@ -154,17 +165,6 @@ jQuery loupeAndLightbox Plugin
       function appendLightbox() {        
         $lightbox
           .appendTo('body')
-          .css({
-            background:'#000',
-            height:$(document).height(),     
-            left:0,
-            position:'absolute',
-            top:0,
-            width:$(document).width(),
-            zIndex:settings.zIndex-1,
-            'opacity':0.75,
-            'filter':'alpha(opacity=75)'
-          })
           .fadeIn(settings.fadeSpeed);
       };
       
