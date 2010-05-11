@@ -16,19 +16,25 @@
         border:none;
       }
       
-      a {
+      a.one,
+      a.two {
         margin:10px;
-        display:block;
       }
     </style>
   </head>
   <body>
     
+    <p>To append the loupe and the optional lightbox, <strong>simply click on the image</strong>. The image is the target.</p>
+    <p>The loupe will stop just outside the edges of the smaller image. If your cursor leaves it, the loupe will pulse indicating that your cursor has left the area. If your cursor goes back to the loupe, it'll pick up where it last left off.</p>
+    
+    <br />
+    <p>If there is a lightbox, <strong>clicking outside the loupe will automatically detach both the loupe and lightbox</strong>.</p>
     <a href="images/big/belle_isle_big.jpg" class="one">
-      <img src="images/small/belle_isle_small.jpg" alt="dogface" />
+      <img src="images/small/belle_isle_small.jpg" alt="belle isle" />
     </a>
     
-    
+    <br /><br />
+    <p>Or, if there is no lightbox, clicking <a href="#">anything outside</a> the loupe will automatically detach it.</p>
     <a href="images/big/dogface_big.jpg" class="two">
       <img src="images/small/dogface_small.jpg" alt="dogface" />
     </a>

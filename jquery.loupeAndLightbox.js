@@ -74,20 +74,21 @@ jQuery loupeAndLightbox Plugin
       ////////////
       // Events //
       ////////////
-      $this.click(function() {
-        return false;
+      $this.click(function(event) {
+        event.preventDefault();
       });
-      $targetImage.click(function(event) {
-        var left = event.pageX,
-            top = event.pageY;
-            
-        appendLoupe();   
-        if(settings.lightbox == true) {  
-          appendLightbox();
+      $targetImage.click(function(event) {              
+        if(!$loupe.hasClass('visible')) {   
+          var left = event.pageX,
+              top = event.pageY;
+                         
+          appendLoupe();   
+          magnify(left, top);
+          if(settings.lightbox == true) {  
+            appendLightbox();
+          }     
         }
-        magnify(left, top);
-      });
-      
+      });      
       $loupe.mousemove(function(event) {
         var left = event.pageX,
             top = event.pageY,
@@ -106,19 +107,19 @@ jQuery loupeAndLightbox Plugin
         detachLoupe();
         if(settings.lightbox == true) {  
           detachLightbox();
-        }
+        }       
       }).mouseleave(function() {
         pulseLoupe();
       });
       
-      // Closes the dialog when clicking outside of it
+      // Detach when clicking outside of the loupe
       $(document).click(function(event) {
-        if(event.target != this) {
+        if($loupe.hasClass('visible')) {
           detachLoupe();
           if(settings.lightbox == true) {  
             detachLightbox();
-          }
-        } 
+          }       
+        }
       });
       
       ///////////////////////
@@ -145,13 +146,17 @@ jQuery loupeAndLightbox Plugin
       function appendLoupe() {
         $loupe
           .appendTo('body')
-          .fadeIn(settings.fadeSpeed)
-          .append($magnifiedImage);
+          .append($magnifiedImage)
+          .fadeIn(settings.fadeSpeed, function() {
+            $(this).addClass('visible');
+          });
       };
       
       function detachLoupe() {
         $loupe.fadeOut(settings.fadeSpeed, function() {
-          $(this).detach();
+          $(this)
+            .removeClass('visible')
+            .detach();
           $magnifiedImage.detach();
         });
       };
