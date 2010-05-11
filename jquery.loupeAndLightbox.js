@@ -70,7 +70,10 @@ jQuery loupeAndLightbox Plugin
         var left = event.pageX,
             top = event.pageY;
             
-        attachLoupeAndLightbox();   
+        appendLoupe();   
+        if(settings.lightbox == true) {  
+          appendLightbox();
+        }
         magnify(left, top);
       });
       
@@ -95,7 +98,10 @@ jQuery loupeAndLightbox Plugin
         
         magnify(left, top);
       }).click(function() {
-        detachLoupeAndLightbox();
+        detachLoupe();
+        if(settings.lightbox == true) {  
+          detachLightbox();
+        }
       }).mouseleave(function() {
         pulseLoupe();
       });
@@ -103,7 +109,10 @@ jQuery loupeAndLightbox Plugin
       // Closes the dialog when clicking outside of it
       $(document).click(function(event) {
         if(event.target != this) {
-          detachLoupeAndLightbox();
+          detachLoupe();
+          if(settings.lightbox == true) {  
+            detachLightbox();
+          }
         } 
       });
       
@@ -128,29 +137,21 @@ jQuery loupeAndLightbox Plugin
         });
       };
       
-      function attachLoupeAndLightbox() {
+      function appendLoupe() {
         $loupe
           .appendTo('body')
           .fadeIn(settings.fadeSpeed)
           .append($magnifiedImage);
-              
-        if(settings.lightbox == true) {  
-          attachLightbox();
-        }
       };
       
-      function detachLoupeAndLightbox() {
+      function detachLoupe() {
         $loupe.fadeOut(settings.fadeSpeed, function() {
           $(this).detach();
           $magnifiedImage.detach();
         });
-        
-        if(settings.lightbox == true) {  
-          detachLightbox();
-        }
       };
       
-      function attachLightbox() {        
+      function appendLightbox() {        
         $lightbox
           .appendTo('body')
           .css({
