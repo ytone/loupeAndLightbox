@@ -123,7 +123,17 @@ jQuery loupeAndLightbox Plugin
       
       // Resizes lightbox with window
       $(window).resize(function() {
-        if($lightbox.is(':visible')) {
+        if($loupe.is(':visible')) {
+          $loupe.css({
+            left:$targetImage.offset().left+($targetImage.width()/2)-($loupe.width()/2),
+            top:$targetImage.offset().top+($targetImage.height()/2)-($loupe.height()/2)
+          });
+          
+          $magnifiedImage.css({
+            left:-($magnifiedImage.width()/2)+($loupe.width()/2),
+            top:-($magnifiedImage.height()/2)+($loupe.height()/2)
+          });
+          
           $lightbox.css({
             height:$(document).height(),
             width:$(document).width()
