@@ -36,6 +36,7 @@ jQuery loupeAndLightbox Plugin
           $magnifiedImage = $('<img src="' + $this.attr('href') + '" alt="' + $targetImage.attr('alt') + '" />'),
           $loupe = $('<div class="Loupe">'),
           $lightbox = $('<div class="Lightbox">');
+          
 
       ///////////
       // Setup //
@@ -60,12 +61,10 @@ jQuery loupeAndLightbox Plugin
         zIndex:settings.zIndex
       });
       $lightbox.css({
-        background:'#000',
-        height:$(document).height(),     
+        background:'#000',  
         left:0,
         position:'absolute',
         top:0,
-        width:$(document).width(),
         zIndex:settings.zIndex-1,
         'opacity':0.75,
         'filter':'alpha(opacity=75)'
@@ -122,6 +121,14 @@ jQuery loupeAndLightbox Plugin
         }
       });
       
+      // Resizes lightbox with window
+      $(window).resize(function() {
+        $lightbox.css({
+          height:$(this).height(),
+          width:$(this).width()
+        });
+      });
+      
       ///////////////////////
       // Private functions //
       ///////////////////////
@@ -164,6 +171,10 @@ jQuery loupeAndLightbox Plugin
       function appendLightbox() {        
         $lightbox
           .appendTo('body')
+          .css({
+            height:$(window).height(),
+            width:$(window).width()
+          })
           .fadeIn(settings.fadeSpeed);
       };
       
