@@ -123,10 +123,12 @@ jQuery loupeAndLightbox Plugin
       
       // Resizes lightbox with window
       $(window).resize(function() {
-        $lightbox.css({
-          height:$(this).height(),
-          width:$(this).width()
-        });
+        if($lightbox.is(':visible')) {
+          $lightbox.css({
+            height:$(document).height(),
+            width:$(document).width()
+          });
+        }
       });
       
       ///////////////////////
@@ -172,8 +174,8 @@ jQuery loupeAndLightbox Plugin
         $lightbox
           .appendTo('body')
           .css({
-            height:$(window).height(),
-            width:$(window).width()
+            height:$(document).height(),
+            width:$(document).width()
           })
           .fadeIn(settings.fadeSpeed);
       };
