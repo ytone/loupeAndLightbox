@@ -176,9 +176,7 @@ jQuery loupeAndLightbox Plugin
         
         $magnifiedImage
           .load(function() {
-            $(this)
-              .appendTo($loupe);
-            $(this).fadeIn(150);
+            $(this).appendTo($loupe);
           })
           .error(function () {
             $loupe
