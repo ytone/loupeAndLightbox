@@ -33,10 +33,9 @@ jQuery loupeAndLightbox Plugin
     return this.each(function() {
       var $this = $(this),
           $targetImage = $this.find('> img'),
-          $magnifiedImage = $('<img src="' + $this.attr('href') + '" alt="' + $targetImage.attr('alt') + '" />'),
+          $magnifiedImage = $('<img />'),
           $loupe = $('<div class="Loupe">'),
           $lightbox = $('<div class="Lightbox">');
-          
 
       ///////////
       // Setup //
@@ -82,6 +81,7 @@ jQuery loupeAndLightbox Plugin
               top = event.pageY;
                          
           appendLoupe();   
+          appendMagnifiedImage();
           magnify(left, top);
           if(settings.lightbox == true) {  
             appendLightbox();
@@ -169,6 +169,26 @@ jQuery loupeAndLightbox Plugin
           .fadeIn(settings.fadeSpeed, function() {
             $(this).addClass('visible');
           });
+      };
+      
+      function appendMagnifiedImage() {
+        var src = $this.attr('href');
+        
+        $magnifiedImage
+          .load(function() {
+            $(this)
+              .appendTo($loupe);
+            $(this).fadeIn(150);
+          })
+          .error(function () {
+            $loupe
+              .html('<p>Image load error</p>')
+              .css({
+                background:'#000',
+                color:'#fff'
+              });
+          })
+          .attr('src', src);
       };
       
       function detachLoupe() {
