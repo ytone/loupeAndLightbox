@@ -20,6 +20,11 @@
       a.two {
         margin:10px;
       }
+      
+      .loadError {
+        background:#000;
+        color:#fff;
+      }
     </style>
   </head>
   <body>
@@ -40,8 +45,8 @@
     </a>
     
     <br /><br />
-    <p>Or, if there's an error loading the image, you get a message displayed.</p>
-    <a href="images/big/run_run_run_dare_2_love_big.jpg" class="two">
+    <p>Or, if there's an error loading the image, a message will be displayed.</p>
+    <a href="images/big/run_run_run_dare_2_love_big.jpg" class="three">
       <img src="images/small/run_run_run_dare_2_love_small.jpg" alt="dogface" />
     </a>
     
@@ -49,6 +54,14 @@
     <script type="text/javascript" src="jquery.loupeAndLightbox.js"></script>
     <script type="text/javascript">
     $(function() {
+      // Default
+      // zIndex:1000,
+      // width:150,
+      // height:150,
+      // border:'2px solid #ccc',
+      // fadeSpeed:250,
+      // lightbox:true,
+      // errorMessage:'Image load error'
       $('.one').loupeAndLightbox({
         border:'1px solid red'
       });
@@ -56,6 +69,12 @@
       $('.two').loupeAndLightbox({
         width:100,
         height:100,
+        lightbox:false
+      });
+      
+      $('.three').loupeAndLightbox({
+        width:80,
+        height:80,
         lightbox:false
       });
     });

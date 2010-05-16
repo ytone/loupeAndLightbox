@@ -35,7 +35,8 @@ jQuery loupeAndLightbox Plugin
           $targetImage = $this.find('> img'),
           $magnifiedImage = $('<img />'),
           $loupe = $('<div class="Loupe">'),
-          $lightbox = $('<div class="Lightbox">');
+          $lightbox = $('<div class="Lightbox">'),
+          $errorMessage = $('<div class="errorMessage">');
 
       ///////////
       // Setup //
@@ -68,6 +69,7 @@ jQuery loupeAndLightbox Plugin
         'opacity':0.75,
         'filter':'alpha(opacity=75)'
       });
+      $errorMessage.text(settings.errorMessage);
         
       ////////////
       // Events //
@@ -180,11 +182,8 @@ jQuery loupeAndLightbox Plugin
           })
           .error(function () {
             $loupe
-              .html('<p>Image load error</p>')
-              .css({
-                background:'#000',
-                color:'#fff'
-              });
+              .append($errorMessage)
+              .addClass('loadError');
           })
           .attr('src', src);
       };
@@ -231,6 +230,7 @@ jQuery loupeAndLightbox Plugin
     height:150,
     border:'2px solid #ccc',
     fadeSpeed:250,
-    lightbox:true
+    lightbox:true,
+    errorMessage:'Image load error'
   };
 })(jQuery);
