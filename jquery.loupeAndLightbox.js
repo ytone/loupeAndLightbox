@@ -183,15 +183,13 @@ jQuery loupeAndLightbox Plugin
           
           $magnifiedImage
             .load(function() {
-              $(this)
-                .addClass('appended')
-                .appendTo($loupe);
+              $(this).addClass('appended');
               $loader.detach();
             })
             .error(function () {
               $loupe
                 .append($errorMessage)
-                .addClass('loadError');            
+                .addClass('lal_loadError');            
               $loader.detach();
             })
             .attr('src', src);
