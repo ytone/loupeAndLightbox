@@ -81,13 +81,15 @@ jQuery loupeAndLightbox Plugin
         if(!$loupe.hasClass('visible')) {   
           var left = event.pageX,
               top = event.pageY;
-                         
-          appendLoupe();   
+          
           appendMagnifiedImage();
-          magnify(left, top);
-          if(settings.lightbox == true) {  
-            appendLightbox();
-          }     
+          setTimeout(function() {
+            appendLoupe();   
+            magnify(left, top);
+            if(settings.lightbox == true) {  
+              appendLightbox();
+            }
+          }, 100);     
         }
       });      
       $loupe.mousemove(function(event) {
@@ -157,7 +159,7 @@ jQuery loupeAndLightbox Plugin
             widthDiff = $magnifiedImage.width()/$targetImage.width(),
             magnifierTop = (-(top - $targetImage.offset().top)*heightDiff)+(settings.height/2),
             magnifierLeft = (-(left - $targetImage.offset().left)*widthDiff)+(settings.width/2);
-            
+
         $magnifiedImage.css({
             top:magnifierTop,
             left:magnifierLeft
