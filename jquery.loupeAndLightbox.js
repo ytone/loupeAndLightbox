@@ -70,7 +70,16 @@ jQuery loupeAndLightbox Plugin
         'opacity':0.75,
         'filter':'alpha(opacity=75)'
       });
-      $errorMessage.text(settings.errorMessage);
+      $errorMessage
+        .text(settings.errorMessage)
+        .css({
+          height:settings.height,
+          width:settings.width
+        });
+      $loader.css({
+          height:settings.height,
+          width:settings.width
+        });
         
       ////////////
       // Events //
@@ -189,6 +198,7 @@ jQuery loupeAndLightbox Plugin
             $loader.detach();
           })
           .error(function () {
+            $(this).hide();
             $loupe
               .append($errorMessage)
               .addClass('lal_loadError');            
