@@ -34,9 +34,10 @@ jQuery loupeAndLightbox Plugin
       var $this = $(this),
           $targetImage = $this.find('> img'),
           $magnifiedImage = $('<img />'),
-          $loupe = $('<div class="Loupe">'),
-          $lightbox = $('<div class="Lightbox">'),
-          $errorMessage = $('<div class="errorMessage">');
+          $loupe = $('<div class="lal_loupe">'),
+          $lightbox = $('<div class="lal_lightbox">'),
+          $errorMessage = $('<div class="lal_errorMessage">'),
+          $loader = $('<div class="lal_loader">Loading...</div>');
 
       ///////////
       // Setup //
@@ -81,7 +82,7 @@ jQuery loupeAndLightbox Plugin
         if(!$loupe.hasClass('visible')) {   
           var left = event.pageX,
               top = event.pageY;
-          
+
           appendMagnifiedImage();
           setTimeout(function() {
             appendLoupe();   
@@ -177,15 +178,18 @@ jQuery loupeAndLightbox Plugin
       
       function appendMagnifiedImage() {
         var src = $this.attr('href');
+        $loader.appendTo($loupe);
         
         $magnifiedImage
           .load(function() {
             $(this).appendTo($loupe);
+            $loader.detach();
           })
           .error(function () {
             $loupe
               .append($errorMessage)
-              .addClass('loadError');
+              .addClass('loadError');            
+            $loader.detach();
           })
           .attr('src', src);
       };
