@@ -82,7 +82,7 @@ jQuery loupeAndLightbox Plugin
         if(!$loupe.hasClass('visible')) {   
           var left = event.pageX,
               top = event.pageY;
-
+              
           appendMagnifiedImage();
           setTimeout(function() {
             appendLoupe();   
@@ -177,21 +177,25 @@ jQuery loupeAndLightbox Plugin
       };
       
       function appendMagnifiedImage() {
-        var src = $this.attr('href');
-        $loader.appendTo($loupe);
-        
-        $magnifiedImage
-          .load(function() {
-            $(this).appendTo($loupe);
-            $loader.detach();
-          })
-          .error(function () {
-            $loupe
-              .append($errorMessage)
-              .addClass('loadError');            
-            $loader.detach();
-          })
-          .attr('src', src);
+        if(!$magnifiedImage.hasClass('appended')) {
+          var src = $this.attr('href');
+          $loader.appendTo($loupe);
+          
+          $magnifiedImage
+            .load(function() {
+              $(this)
+                .addClass('appended')
+                .appendTo($loupe);
+              $loader.detach();
+            })
+            .error(function () {
+              $loupe
+                .append($errorMessage)
+                .addClass('loadError');            
+              $loader.detach();
+            })
+            .attr('src', src);
+        }
       };
       
       function detachLoupe() {
@@ -199,7 +203,6 @@ jQuery loupeAndLightbox Plugin
           $(this)
             .removeClass('visible')
             .detach();
-          $magnifiedImage.detach();
         });
       };
       
