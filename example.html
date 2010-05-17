@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>loupeAndLightbox jQuery Plugin</title>
+    <style>
+      body {
+        margin:50px;
+        text-align:left;
+      }
+      
+      * {
+        outline:none;
+      }
+      
+      img {
+        border:none;
+      }
+      
+      a.one,
+      a.two {
+        margin:10px;
+      }
+      
+      .lal_loadError {
+        background:#000;
+        color:#fff;
+      }
+      img {
+        vertical-align:bottom;
+      }
+      
+      h2 {
+        margin-top:40px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h1>Loupe and Lightbox</h1>
+    
+    <p>To append the loupe and the optional lightbox, <strong>simply click on the image</strong>. The image is the target. Clicking inside the loupe will detach it and the optional lightbox. Images are loaded with the click event and are detached from the DOM when the loupe is closed using .detach() function (which stores the element in the DOM after removing it).</p>
+    <p>The loupe will stop just outside the edges of the smaller image. If your cursor leaves it, the loupe will pulse indicating that your cursor has left the area. If your cursor goes back to the loupe, it'll pick up where it last left off. If you resize the window will the loupe and lightbox are open, the lightbox will resize to the window and the loupe will center itself on the image.</p>
+    
+    <p>
+      If there is a lightbox, <strong>clicking outside the loupe will automatically detach both the loupe and lightbox</strong>:
+    </p>
+    <a href="images/big/belle_isle_big.jpg" class="one">
+      <img src="images/small/belle_isle_small.jpg" alt="belle isle" />
+    </a>
+    
+    <br /><br />
+    <p>
+      Or, if there is no lightbox, clicking <a href="#">anything outside</a> the loupe will automatically detach it:
+    </p>
+    <a href="images/big/dogface_big.jpg" class="two">
+      <img src="images/small/dogface_small.jpg" alt="dogface" />
+    </a>
+    
+    <h2>Loading images with AJAX</h2>
+    <p>All images are loading using AJAX on the click event. With this you get:</p>
+    
+    <p>
+      An error message if the <strong>image cannot load</strong>:
+    </p>
+    <a href="images/big/run_run_run_dare_2_love_big.jpg" class="three">
+      <img src="images/small/run_run_run_dare_2_love_small.jpg" alt="dogface" />
+    </a>
+
+    <p>
+      A loading div <strong>before the AJAX completes</strong>:
+    </p>
+    <a href="http://farm3.static.flickr.com/2750/4307478133_156992058d_b.jpg" class="three">
+      <img src="http://farm3.static.flickr.com/2750/4307478133_156992058d_m.jpg" alt="rockit" />
+    </a>
+    
+    <p>Since all the elements are using .detach(), they will remain available to append back into DOM elements if clicked again. This means, the second time around the bigger image will be immediately available!</p>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.loupeAndLightbox.js"></script>
+    <script type="text/javascript">
+    $(function() {
+      // Default
+      // zIndex:1000,
+      // width:150,
+      // height:150,
+      // border:'2px solid #ccc',
+      // fadeSpeed:250,
+      // lightbox:true,
+      // errorMessage:'Image load error'
+      $('.one').loupeAndLightbox({
+        border:'1px solid red'
+      });
+      
+      $('.two').loupeAndLightbox({
+        width:100,
+        height:100,
+        lightbox:false
+      });
+      
+      $('.three').loupeAndLightbox({
+        width:80,
+        height:80,
+        lightbox:false
+      });
+    });
+    </script>
+  </body>
+</html>

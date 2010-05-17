@@ -1,5 +1,6 @@
 /*
 jQuery loupeAndLightbox Plugin
+<<<<<<< HEAD
 * Version 1.0
 * 05-10-2010
 * Author: M.Biscan
@@ -40,10 +41,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       ///////////
       // Setup //
-      ///////////
+      ///////////      
       $this.css({
         cursor:'default'
-      });
+      });  
       $targetImage.css({
         cursor:'pointer'
       });
@@ -86,8 +87,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       $this.click(function(event) {
         event.preventDefault();
       });
-      $targetImage.click(function(event) {
-        if(!$loupe.hasClass('visible')) {
+      $targetImage.click(function(event) {              
+        if(!$loupe.hasClass('visible')) {   
           var left = event.pageX,
               top = event.pageY;
               
@@ -96,14 +97,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           }
           
           setTimeout(function() {
-            appendLoupe();
+            appendLoupe();   
             magnify(left, top);
-            if(settings.lightbox == true) {
+            if(settings.lightbox == true) {  
               appendLightbox();
             }
-          }, 100);
+          }, 100);     
         }
-      });
+      });      
       $loupe.mousemove(function(event) {
         var left = event.pageX,
             top = event.pageY,
@@ -131,9 +132,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       $(document).click(function(event) {
         if($loupe.hasClass('visible')) {
           detachLoupe();
-          if(settings.lightbox == true) {
+          
+          if(settings.lightbox == true) {  
             detachLightbox();
-          }
+          }       
         }
       });
       
@@ -160,9 +162,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       ///////////////////////
       // Private functions //
       ///////////////////////
-      function magnify(left, top) {
+      function magnify(left, top) {        
         $loupe
-          .css({
+          .css({ 
             left:left-(settings.width/2),
             top:top-(settings.height/2)
           });
@@ -200,7 +202,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             $(this).hide();
             $loupe
               .append($errorMessage)
-              .addClass('lal_loadError');
+              .addClass('lal_loadError');         
             $loader.detach();
           })
           .attr('src', src);
@@ -214,7 +216,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         });
       };
       
-      function appendLightbox() {
+      function appendLightbox() {        
         $lightbox
           .appendTo('body')
           .css({
