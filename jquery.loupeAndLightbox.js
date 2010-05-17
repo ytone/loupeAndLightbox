@@ -108,10 +108,10 @@ jQuery loupeAndLightbox Plugin
       $loupe.mousemove(function(event) {
         var left = event.pageX,
             top = event.pageY,
-            offsetTop = $targetImage.offset().top,
-            offsetLeft = $targetImage.offset().left,
-            offsetBottom = $targetImage.offset().top+$targetImage.height(),
-            offsetRight = $targetImage.offset().left+$targetImage.width();
+            offsetTop = $targetImage.offset().top-($loupe.width()/2),
+            offsetLeft = $targetImage.offset().left-($loupe.height()/2),
+            offsetBottom = $targetImage.offset().top+$targetImage.height()+($loupe.height()/2),
+            offsetRight = $targetImage.offset().left+$targetImage.width()+($loupe.width()/2);
 
         if(left < offsetLeft || left > offsetRight || top < offsetTop || top > offsetBottom) {
           $loupe.css({cursor:'default'});
