@@ -1,6 +1,5 @@
 /*
 jQuery loupeAndLightbox Plugin
-<<<<<<< HEAD
 * Version 1.0
 * 05-10-2010
 * Author: M.Biscan
